@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <div class="floating-elements">
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+            </div>
+            <div class="header-content">
+                <h1>Project Dashboard</h1>
+                <p>AI coded projects</p>
+                <div class="author">Created by Jason George</div>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <button class="add-project-btn" id="addProjectBtn">
+                <i class="fas fa-plus"></i>
+                Add Project
+            </button>
+
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Project cards will be dynamically inserted here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Project Modal -->
+    <div class="modal-overlay" id="addProjectModal">
+        <div class="modal add-project-modal">
+            <div class="modal-header">
+                <h2>Add New Project</h2>
+                <button class="close-btn" id="closeAddModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="modal-form" id="addProjectForm">
+                <div class="form-group">
+                    <label for="projectName">Project Name</label>
+                    <input type="text" id="projectName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="projectDescription">Description</label>
+                    <textarea id="projectDescription" name="description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="projectUrl">Project URL</label>
+                    <input type="url" id="projectUrl" name="url" required>
+                </div>
+                <div class="form-group">
+                    <label for="projectTools">Tools Used (comma separated)</label>
+                    <input type="text" id="projectTools" name="tools" placeholder="React, Node.js, MongoDB">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelAdd">Cancel</button>
+                    <button type="submit" class="btn-primary" id="submitAddProject">Add Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div class="modal-overlay" id="projectDetailModal">
+        <div class="modal project-detail-modal">
+            <div class="modal-header">
+                <h2 id="detailProjectName"></h2>
+                <div class="modal-header-actions">
+                    <button class="edit-btn" id="editProjectBtn">
+                        <i class="fas fa-edit"></i>
+                        Edit
+                    </button>
+                    <button class="close-btn" id="closeDetailModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="project-screenshot-container">
+                    <img id="detailProjectImage" src="" alt="Project Screenshot">
+                    <div class="launch-overlay">
+                        <button class="launch-btn" id="launchProjectBtn">
+                            <i class="fas fa-external-link-alt"></i>
+                            LAUNCH
+                        </button>
+                    </div>
+                    <button class="refresh-screenshot-detail-btn" id="refreshDetailScreenshot" title="Refresh screenshot">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                <div class="project-details">
+                    <div class="detail-section">
+                        <h3>Description</h3>
+                        <p id="detailProjectDescription"></p>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Tools Used</h3>
+                        <div class="tools-list" id="detailProjectTools"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Project Modal -->
+    <div class="modal-overlay" id="editProjectModal">
+        <div class="modal edit-project-modal">
+            <div class="modal-header">
+                <h2>Edit Project</h2>
+                <button class="close-btn" id="closeEditModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="modal-form" id="editProjectForm">
+                <div class="form-group">
+                    <label for="editProjectName">Project Name</label>
+                    <input type="text" id="editProjectName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="editProjectDescription">Description</label>
+                    <textarea id="editProjectDescription" name="description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editProjectUrl">Project URL</label>
+                    <input type="url" id="editProjectUrl" name="url" required>
+                </div>
+                <div class="form-group">
+                    <label for="editProjectTools">Tools Used (comma separated)</label>
+                    <input type="text" id="editProjectTools" name="tools">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelEdit">Cancel</button>
+                    <button type="submit" class="btn-primary" id="submitEditProject">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

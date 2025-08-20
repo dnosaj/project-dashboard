@@ -1,0 +1,19 @@
+{
+  "name": "project-dashboard",
+  "version": "1.0.0",
+  "description": "A professional dashboard for managing vibe coded projects",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx live-server --port=3000",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "install-playwright": "npx playwright install"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "html2canvas": "^1.4.1"
+  }
+}
