@@ -5,6 +5,7 @@ class ProjectDashboard {
         
         this.initializeElements();
         this.attachEventListeners();
+        this.setupStyleSwitcher();
         this.renderProjects();
     }
 
@@ -612,6 +613,49 @@ class ProjectDashboard {
         this.projects = [...this.projects, ...sampleProjects];
         this.saveProjects();
         this.renderProjects();
+    }
+
+    setupStyleSwitcher() {
+        const styleButtons = document.querySelectorAll('.style-btn');
+        
+        // Load saved style preference
+        const savedStyle = localStorage.getItem('dashboardStyle') || 'minimal';
+        this.applyStyle(savedStyle);
+        
+        // Update active button
+        styleButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.style === savedStyle);
+        });
+        
+        // Add click handlers
+        styleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const style = button.dataset.style;
+                
+                // Update active state
+                styleButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Apply style
+                this.applyStyle(style);
+                
+                // Save preference
+                localStorage.setItem('dashboardStyle', style);
+                
+                // Show feedback
+                this.showToast(`${style.charAt(0).toUpperCase() + style.slice(1)} style applied!`, 'success');
+            });
+        });
+    }
+
+    applyStyle(style) {
+        // Remove all style classes
+        document.body.classList.remove('minimal-style', 'liquid-style', 'retro-style');
+        
+        // Apply new style class
+        if (style !== 'minimal') {
+            document.body.classList.add(`${style}-style`);
+        }
     }
 }
 

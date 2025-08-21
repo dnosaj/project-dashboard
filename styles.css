@@ -32,42 +32,55 @@ body {
 }
 
 .dashboard-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 40%, rgba(26, 26, 26, 0.02) 50%, transparent 60%);
-    animation: shimmer 8s ease-in-out infinite;
-    pointer-events: none;
+    display: none;
 }
 
 .dashboard-header::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(26, 26, 26, 0.03) 0%, transparent 70%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulse 6s ease-in-out infinite;
-    pointer-events: none;
+    display: none;
 }
 
-.dashboard-header:hover::before {
-    animation-duration: 2s;
-}
-
-.dashboard-header:hover::after {
-    animation-duration: 3s;
-}
+/* Header hover animations removed */
 
 .header-content {
     position: relative;
     z-index: 2;
+}
+
+/* Style Switcher */
+.style-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.style-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid rgba(26, 26, 26, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.style-btn:hover {
+    border-color: rgba(26, 26, 26, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px);
+}
+
+.style-btn.active {
+    border-color: #1a1a1a;
+    background: #1a1a1a;
+    color: white;
+    box-shadow: 0 4px 20px rgba(26, 26, 26, 0.15);
 }
 
 .dashboard-header h1 {
@@ -81,20 +94,10 @@ body {
 }
 
 .dashboard-header h1::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #1a1a1a, transparent);
-    transition: all 0.4s ease;
-    transform: translateX(-50%);
+    display: none;
 }
 
-.dashboard-header:hover h1::after {
-    width: 100%;
-}
+/* H1 underline animation removed */
 
 .dashboard-header:hover h1 {
     transform: translateY(-2px);
@@ -130,25 +133,9 @@ body {
     border-top-color: #1a1a1a;
 }
 
-@keyframes shimmer {
-    0%, 100% {
-        transform: translateX(-100%);
-    }
-    50% {
-        transform: translateX(100%);
-    }
-}
+/* Shimmer animation removed */
 
-@keyframes pulse {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.3;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.1);
-        opacity: 0.1;
-    }
-}
+/* Pulse animation removed */
 
 /* Floating elements animation */
 .floating-elements {
@@ -766,4 +753,686 @@ body {
 .empty-state p {
     font-size: 1rem;
     opacity: 0.8;
+}
+
+/* ===== LIQUID GLASS APPLE STYLE ===== */
+body.liquid-style {
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body.liquid-style::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 10%, rgba(67, 56, 202, 0.2) 0%, transparent 45%);
+    backdrop-filter: blur(2px);
+    pointer-events: none;
+    z-index: 0;
+    animation: backgroundShift 30s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { 
+        background:
+            radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.2) 0%, transparent 40%),
+            radial-gradient(circle at 85% 75%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+            radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 70% 10%, rgba(67, 56, 202, 0.2) 0%, transparent 45%);
+    }
+    25% { 
+        background:
+            radial-gradient(circle at 25% 15%, rgba(67, 56, 202, 0.15) 0%, transparent 45%),
+            radial-gradient(circle at 75% 85%, rgba(139, 92, 246, 0.2) 0%, transparent 35%),
+            radial-gradient(circle at 60% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 45%),
+            radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
+    }
+    50% { 
+        background:
+            radial-gradient(circle at 35% 35%, rgba(67, 56, 202, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 65% 65%, rgba(139, 92, 246, 0.15) 0%, transparent 45%),
+            radial-gradient(circle at 40% 70%, rgba(59, 130, 246, 0.2) 0%, transparent 40%),
+            radial-gradient(circle at 90% 30%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+    }
+    75% { 
+        background:
+            radial-gradient(circle at 10% 45%, rgba(67, 56, 202, 0.2) 0%, transparent 35%),
+            radial-gradient(circle at 90% 55%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 30% 60%, rgba(59, 130, 246, 0.15) 0%, transparent 45%),
+            radial-gradient(circle at 60% 40%, rgba(168, 85, 247, 0.2) 0%, transparent 40%);
+    }
+}
+
+body.liquid-style .dashboard {
+    background: transparent;
+}
+
+body.liquid-style .dashboard-header {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(60px) saturate(180%);
+    -webkit-backdrop-filter: blur(60px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 4rem;
+    padding: 3rem 2rem;
+    box-shadow: 
+        0 16px 60px rgba(0, 0, 0, 0.2),
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body.liquid-style .dashboard-header h1 {
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 4rem;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+    margin-bottom: 0.5rem;
+}
+
+body.liquid-style .dashboard-header h1::before {
+    display: none;
+}
+
+body.liquid-style .dashboard-header p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+body.liquid-style .author {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+}
+
+body.liquid-style .style-switcher {
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+body.liquid-style .style-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+body.liquid-style .style-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+body.liquid-style .style-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 4px 16px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body.liquid-style .add-project-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.liquid-style .add-project-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.2),
+        0 8px 24px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+body.liquid-style .project-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border-radius: 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.liquid-style .project-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.25),
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+body.liquid-style .project-card h3 {
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.liquid-style .project-card p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+body.liquid-style .modal-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+body.liquid-style .modal {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body.liquid-style .modal h2 {
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.liquid-style .modal label {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body.liquid-style .modal input,
+body.liquid-style .modal textarea {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+body.liquid-style .modal input::placeholder,
+body.liquid-style .modal textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+body.liquid-style .modal input:focus,
+body.liquid-style .modal textarea:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+body.liquid-style .close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.liquid-style .close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.liquid-style .edit-btn,
+body.liquid-style .launch-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+body.liquid-style .edit-btn:hover,
+body.liquid-style .launch-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+body.liquid-style .empty-state {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body.liquid-style .toast {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(20px);
+}
+
+/* ===== RETRO TERMINAL STYLE ===== */
+body.retro-style {
+    background: #ffffff;
+    background-image: 
+        linear-gradient(90deg, transparent 78px, rgba(0, 0, 0, 0.05) 79px, transparent 80px),
+        linear-gradient(0deg, transparent 78px, rgba(0, 0, 0, 0.05) 79px, transparent 80px);
+    background-size: 80px 80px;
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    color: #000;
+    overflow-x: hidden;
+}
+
+body.retro-style::before {
+    display: none;
+}
+
+body.retro-style .dashboard {
+    background: transparent;
+}
+
+body.retro-style .dashboard-header {
+    background: linear-gradient(135deg, #ff0080 0%, #0080ff 25%, #00ff41 50%, #ff6b35 75%, #f7931e 100%);
+    border: 8px solid #000;
+    border-radius: 0;
+    box-shadow: 16px 16px 0px #000;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+body.retro-style .dashboard-header::before,
+body.retro-style .dashboard-header::after {
+    display: none;
+}
+
+body.retro-style .floating-elements {
+    display: none;
+}
+
+body.retro-style .style-switcher {
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+body.retro-style .style-btn {
+    background: #00ff41;
+    border: 4px solid #000;
+    border-radius: 0;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.75rem 1rem;
+    box-shadow: 6px 6px 0px #000;
+    transition: all 0.1s ease;
+    backdrop-filter: none;
+}
+
+body.retro-style .style-btn:hover {
+    background: #00dd35;
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0px #000;
+}
+
+body.retro-style .style-btn.active {
+    background: linear-gradient(135deg, #ff0080 0%, #0080ff 100%);
+    color: white;
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px #000;
+}
+
+body.retro-style .style-btn:nth-child(1) {
+    background: #00ff41;
+}
+
+body.retro-style .style-btn:nth-child(2) {
+    background: #ff0080;
+    color: white;
+}
+
+body.retro-style .style-btn:nth-child(3) {
+    background: #0080ff;
+    color: white;
+}
+
+body.retro-style .dashboard-header h1 {
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    line-height: 1;
+    position: relative;
+}
+
+body.retro-style .dashboard-header h1::before {
+    display: none;
+}
+
+body.retro-style .dashboard-header p {
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+body.retro-style .author {
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+body.retro-style .add-project-btn {
+    background: #00ff41;
+    border: 6px solid #000;
+    border-radius: 0;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    box-shadow: 10px 10px 0px #000;
+    transition: all 0.1s ease;
+    font-size: 1.1rem;
+}
+
+body.retro-style .add-project-btn:hover {
+    background: #00dd35;
+    transform: translate(5px, 5px);
+    box-shadow: 5px 5px 0px #000;
+}
+
+body.retro-style .project-card {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    border: 6px solid #000;
+    border-radius: 0;
+    box-shadow: 12px 12px 0px #000;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+body.retro-style .project-card:nth-child(2n) {
+    background: linear-gradient(135deg, #ff0080 0%, #ff4080 100%);
+}
+
+body.retro-style .project-card:nth-child(3n) {
+    background: linear-gradient(135deg, #0080ff 0%, #40a0ff 100%);
+}
+
+body.retro-style .project-card:nth-child(4n) {
+    background: linear-gradient(135deg, #00ff41 0%, #40ff71 100%);
+}
+
+body.retro-style .project-card:hover {
+    transform: translate(6px, 6px);
+    box-shadow: 6px 6px 0px #000;
+}
+
+body.retro-style .project-card h3 {
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+body.retro-style .project-card p {
+    color: #000;
+    font-family: 'Courier New', monospace;
+    opacity: 0.8;
+}
+
+body.retro-style .project-screenshot {
+    border: 3px solid #000;
+    border-radius: 0;
+}
+
+body.retro-style .launch-btn {
+    background: #00ff41;
+    border: 3px solid #000;
+    border-radius: 0;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0px #000;
+    padding: 0.75rem 1.5rem;
+}
+
+body.retro-style .launch-btn:hover {
+    background: #00dd35;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+body.retro-style .modal-overlay {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+body.retro-style .modal {
+    background: linear-gradient(135deg, #ff0080 0%, #0080ff 33%, #00ff41 66%, #ff6b35 100%);
+    border: 10px solid #000;
+    border-radius: 0;
+    box-shadow: 20px 20px 0px #000;
+    color: #000;
+}
+
+body.retro-style .modal h2 {
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2rem;
+    border-bottom: 4px solid #000;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+body.retro-style .close-btn {
+    background: #ff3030;
+    border: 3px solid #000;
+    border-radius: 0;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    box-shadow: 4px 4px 0px #000;
+    font-size: 1.2rem;
+}
+
+body.retro-style .close-btn:hover {
+    background: #dd2020;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+body.retro-style .edit-btn {
+    background: #00ff41;
+    border: 3px solid #000;
+    border-radius: 0;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0px #000;
+    padding: 0.75rem 1.5rem;
+}
+
+body.retro-style .edit-btn:hover {
+    background: #00dd35;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+body.retro-style .form-group label {
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+body.retro-style .form-group input,
+body.retro-style .form-group textarea {
+    background: #000;
+    border: 3px solid #00ff41;
+    border-radius: 0;
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+    padding: 0.75rem;
+    font-size: 1rem;
+}
+
+body.retro-style .form-group input:focus,
+body.retro-style .form-group textarea:focus {
+    border-color: #00dd35;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+body.retro-style .modal .btn {
+    background: #00ff41;
+    border: 3px solid #000;
+    border-radius: 0;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 4px 4px 0px #000;
+    transition: all 0.1s ease;
+}
+
+body.retro-style .modal .btn:hover {
+    background: #00dd35;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+body.retro-style .modal .btn-secondary {
+    background: #666;
+    color: white;
+}
+
+body.retro-style .modal .btn-secondary:hover {
+    background: #555;
+}
+
+body.retro-style .tools-section h4 {
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #000;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+body.retro-style .tool-tag {
+    background: #000;
+    color: #00ff41;
+    border: 2px solid #00ff41;
+    border-radius: 0;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+body.retro-style .refresh-screenshot-btn,
+body.retro-style .refresh-screenshot-detail-btn {
+    background: #00ff41;
+    border: 2px solid #000;
+    border-radius: 0;
+    color: #000;
+    box-shadow: 2px 2px 0px #000;
+    backdrop-filter: none;
+}
+
+body.retro-style .refresh-screenshot-btn:hover,
+body.retro-style .refresh-screenshot-detail-btn:hover {
+    background: #00dd35;
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px #000;
+}
+
+body.retro-style .empty-state {
+    background: linear-gradient(135deg, #0080ff 0%, #ff0080 50%, #00ff41 100%);
+    border: 4px solid #000;
+    border-radius: 0;
+    box-shadow: 8px 8px 0px #000;
+    color: #000;
+}
+
+body.retro-style .empty-state h3 {
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+body.retro-style .empty-state p {
+    color: #000;
+    font-family: 'Courier New', monospace;
+    opacity: 0.8;
+}
+
+body.retro-style .toast {
+    background: #00ff41;
+    border: 3px solid #000;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0px #000;
+    backdrop-filter: none;
 }
